@@ -28,7 +28,6 @@ def parseData(file):
     pat = re.compile(r'(\<[\s\S]*\>)')
     betterData = re.sub(pat , '' , messData)
     attributes = re.findall(r'(\[[\s\S]*])', messData)
-    #caonima = re.split(r'\s+', caonima)
     attributes = re.split(r'\s+', attributes[0])
     attributes = attributes[1:-1]
     attriNum = len(attributes)
