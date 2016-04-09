@@ -6,6 +6,16 @@ import pprint
 
 
 file = "test.txt"
+
+def isFloat(str):
+    
+    try:
+        float(str)
+        return True
+    except ValueError:
+        return False
+        
+        
 def parseData(file):
     data=[]
     
@@ -37,14 +47,34 @@ def parseData(file):
 
     dataset = re.split(r'\s+', dataset)
     dataset = dataset [1:]
-    print dataset
+    
+  
+            
+            
+    #print dataset
     
     n = len(dataset)/attriNum
     print n
     
-    data = [list(t) for t in zip(*[iter(dataset)]*attriNum)]
+    table = [list(t) for t in zip(*[iter(dataset)]*attriNum)]
+    table = np.array(table)
+    
+    #print table
+    
+#convert numerical elements to float
+
+    desicion = table[:,-1]
+    data = table[:,:-1]
+    data =data.tolist()
+    for i in data:
+        for n,j in enumerate(i):
+            if isFloat(j) == True:
+                i[n] = float(j)
+                
+                
     data = np.array(data)
     print data
+
     
 
     
