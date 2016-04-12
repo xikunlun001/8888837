@@ -55,13 +55,25 @@ def bigA(data):
     #print bigA
     return bigASet
 
-def indexT(data, attributes):
+def indexT(data, attributes, attriA):
     T = []
     number = len(data[:,0])
     for i in attributes:
         T += number * [i]
+        
+        
+    attriIndex = copy.deepcopy(attriA)
     
-    return T
+    for n,i in enumerate(attriIndex):
+        for m,j in enumerate(i):
+            for o,a in enumerate(j):
+                attriIndex[n][m][o] = T[0]
+                T.pop(0)
+                
+    
+    attriIndex = list(itertools.chain(*attriIndex))
+    
+    return attriIndex
     
         
            
@@ -196,9 +208,9 @@ def main(file):
 
     lower(decisionSet, bigASet)
     
-    T =indexT(data, attributes)
     
-    print attriA
+    
+    print indexT(data, attributes, attriA)
     
     #data = np.array(data)
     #Attributes.append(attributes.split())
